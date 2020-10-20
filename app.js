@@ -1,3 +1,4 @@
+require('dotenv').config();
 const express = require('express');
 const path = require('path');
 const session = require('express-session');
@@ -8,8 +9,7 @@ const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
 
-const mongodb = 'mongodb+srv://mainUser:whatupmain@cluster0.9datp.mongodb.net/passport?retryWrites=true&w=majority';
-
+const mongodb = process.env.DB_HOST;
 mongoose.connect(mongodb, { useUnifiedTopology: true, useNewUrlParser: true });
 const db = mongoose.connection;
 db.on('error', console.error.bind(console, 'mongo connection error'));
@@ -26,7 +26,7 @@ const app = express();
 app.set('views', __dirname);
 app.set('view engine', 'ejs');
 
-app.use(session({ secret: 'cats', resave: false, saveUninitialized: true }));
+app.use(session({ secret: process.env.SESSION_SECRET, resave: false, saveUninitialized: true }));
 
 passport.use(
   new LocalStrategy((username,password,done)=>{
