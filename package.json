@@ -5,7 +5,9 @@
   "private": true,
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node ./app.js"
+    "start": "node ./app",
+    "devstart" : "nodemon ./app",
+    "serverstart": "DEBUG=passport-basics:* npm run devstart"
   },
   "keywords": [
     "passport",
@@ -21,5 +23,8 @@
     "mongoose": "^5.10.9",
     "passport": "^0.4.1",
     "passport-local": "^1.0.0"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.6"
   }
 }
