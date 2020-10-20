@@ -75,4 +75,12 @@ app.post('/sign-up', (req,res,next) =>{
   });
 });
 
+app.post(
+  '/log-in',
+  passport.authenticate('local',{
+    successRedirect: '/',
+    failureRedirect:'/'
+  })
+)
+
 app.listen(8080, () => console.log('app listening on port 8080'));
